@@ -15,6 +15,11 @@ class Gallery extends Component {
       this.setState({ images: res });
     });
   }
+  componentWillReceiveProps() {
+    this.executeTransaction(`SELECT * FROM images ORDER BY date DESC`).then((res) => {
+      this.setState({ images: res });
+    });
+  }
   executeTransaction(query) {
     let db = openDatabase("images", "0.1", "A list of to do items.", 2 * 1024 * 1024);
     return new Promise(function (resolve, reject) {
