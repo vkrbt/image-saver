@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { Thumbnail, Col } from 'react-bootstrap'
 class ImageCard extends Component {
+  addDefaultSrc = (e) =>{
+    e.target.src = 'https://blog.sqlauthority.com/i/a/errorstop.png';
+  }
   render() {
     return (
-      <Col xs={12} md={4}>
-        <Thumbnail src="https://react-bootstrap.github.io/assets/thumbnaildiv.png">
-          
+      <Col>
+        <Thumbnail onError={this.addDefaultSrc} src={this.props.image}>
+          <p>{this.props.description}</p>
         </Thumbnail>
       </Col>
     )
