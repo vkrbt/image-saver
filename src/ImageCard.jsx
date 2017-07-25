@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Thumbnail, Col } from 'react-bootstrap'
 class ImageCard extends Component {
-  addDefaultSrc = (e) =>{
+  addDefaultSrc = (e) => {
     e.target.src = 'https://blog.sqlauthority.com/i/a/errorstop.png';
   }
   render() {

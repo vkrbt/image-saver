@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, Button } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Navbar, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import AddModal from './AddModal.jsx';
+import { RouteTransition } from 'react-router-transition';
 import './styles.css'
 
 class App extends Component {
   constructor() {
     super();
     this.state = { show: false };
-    this.images = [];
+  }
+  componentWillMount() {
+    let db = openDatabase("images", "0.1", "A list of to do items.", 200000);
+    db.transaction((tx) => {
+      tx.executeSql("CREATE TABLE IF NOT EXISTS 'images' ('link' VARCHAR(200) NOT NULL, 'description' VARCHAR(200) NULL, 'date' DATETIME NOT NULL);")
+    })
   }
   openModal = () => {
     this.setState({ show: true });
@@ -20,13 +25,19 @@ class App extends Component {
   }
   addImage = (item) => {
     this.setState({ show: false });
-    console.log(this);
-    this.images.push(item);
+    this.addToDb(item);
+  }
+  addToDb(item) {
+    item.date = Date.now();
+    let db = openDatabase("images", "0.1", "A list of to do items.", 200000);
+    db.transaction((tx) => {
+      tx.executeSql(`INSERT INTO images(link, description, date) VALUES(?, ?, ?)`, [item.link, item.description, item.date]);
+    });
   }
   render() {
     return (
       <div className="container">
-        <Navbar fixedTop={true}>
+        <Navbar fixedTop collapseOnSelect={true}>
           <Navbar.Header>
             <Navbar.Brand>
               <Link to='/'>Images</Link>
@@ -34,11 +45,6 @@ class App extends Component {
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-            <Nav>
-              <LinkContainer to='/image/active'>
-                <NavItem>Image</NavItem>
-              </LinkContainer>
-            </Nav>
             <Navbar.Text pullRight>
               <Button
                 bsStyle="primary"
@@ -49,9 +55,15 @@ class App extends Component {
             </Navbar.Text>
           </Navbar.Collapse>
         </Navbar>
-        {this.props.children && React.cloneElement(this.props.children, {
-          images: this.images
-        })}
+        <RouteTransition
+          pathname={this.props.location.pathname}
+          atEnter={{ translateX: 100 }}
+          atLeave={{ translateX: -100 }}
+          atActive={{ translateX: 0 }}
+          mapStyles={styles => ({ transform: `translateX(${styles.translateX}%)` })}
+        >
+          {this.props.children}
+        </RouteTransition>
         <AddModal show={this.state.show} onClose={this.onClose} addImage={this.addImage} />
       </div>
     )

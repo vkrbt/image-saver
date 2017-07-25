@@ -4,22 +4,22 @@ import { Button, Modal, FormGroup, FormControl, ControlLabel, Image } from 'reac
 class AddModal extends Component {
   constructor() {
     super()
-    this.state = { image: '', description: '', btnDisabled: true };
+    this.state = { link: '', description: '', btnDisabled: true };
   }
   componentWillReceiveProps(nextProps) {
     this.setState({ show: nextProps.show });
   }
   addImage = () => {
-    if(!this.state.btnDisabled){
-      this.props.addImage({ link: this.state.image, description: this.state.description });
-      this.setState({ image: '', description: '' })
-    }else{
+    if (!this.state.btnDisabled) {
+      this.props.addImage({ link: this.state.link, description: this.state.description });
+      this.setState({ link: '', description: '' })
+    } else {
       alert('Image isn\'t valid')
     }
   }
-  imageInputChangeHandler = (e) => {
+  linkInputChangeHandler = (e) => {
     e.preventDefault();
-    this.setState({ image: e.target.value });
+    this.setState({ link: e.target.value });
   }
   descriptionInputChangeHandler = (e) => {
     e.preventDefault();
@@ -30,11 +30,11 @@ class AddModal extends Component {
       this.addImage();
     }
   }
-  makeButtonDisabled = (e) =>{
-    this.setState({btnDisabled: true});
+  makeButtonDisabled = (e) => {
+    this.setState({ btnDisabled: true });
   }
   makeButtonActive = (e) => {
-    this.setState({btnDisabled: false});
+    this.setState({ btnDisabled: false });
   }
   render() {
     return (
@@ -51,13 +51,13 @@ class AddModal extends Component {
             <form onKeyPress={this.keyPressHandler}>
               <FormGroup controlId='image'>
                 <ControlLabel>Image Link</ControlLabel>
-                <FormControl autoFocus componentClass='input' placeholder='Image Link' value={this.state.image} onChange={this.imageInputChangeHandler} />
+                <FormControl maxLength={200} autoFocus componentClass='input' placeholder='Image Link' value={this.state.link} onChange={this.linkInputChangeHandler} />
               </FormGroup>
               <FormGroup controlId="description">
                 <ControlLabel>Description</ControlLabel>
-                <FormControl componentClass="textarea" placeholder="Description" value={this.state.description} onChange={this.descriptionInputChangeHandler} />
+                <FormControl maxLength={200} componentClass="textarea" placeholder="Description" value={this.state.description} onChange={this.descriptionInputChangeHandler} />
               </FormGroup>
-              <Image src={this.state.image} onError={this.makeButtonDisabled} onLoad={this.makeButtonActive} responsive/>
+              <Image src={this.state.link} onError={this.makeButtonDisabled} onLoad={this.makeButtonActive} responsive />
 
             </form>
           </Modal.Body>

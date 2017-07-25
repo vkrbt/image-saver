@@ -1,7 +1,20 @@
-body{
+body {
   padding-top: 86px;
-} 
-.thumbnail p{
+}
+
+.thumbnail p {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.card{
+  text-align: center;
+}
+
+.route-wrapper{
+  position: absolute;
 }
