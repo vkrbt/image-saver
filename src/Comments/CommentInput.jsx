@@ -23,8 +23,9 @@ class CommentInput extends Component {
       this.setState({ btnDisabled: true })
     }
   }
-  keyPressHandler = (event) => {
-    if (event.key === 'Enter') {
+  keyPressHandler = (e) => {
+    e.preventDefault();
+    if (e.key === 'Enter') {
       this.addComment();
     }
   }
