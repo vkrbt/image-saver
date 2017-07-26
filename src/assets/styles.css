@@ -83,3 +83,6 @@ a:focus {
   transform: rotate(0) scale(1);
 }
 
+.empty-data{
+  text-align: center;
+}

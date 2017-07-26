@@ -34,13 +34,13 @@ class Gallery extends Component {
   render() {
     return (
       <Col xs={12} sm={8} smOffset={2} md={6} mdOffset={3}>
-        {this.state.images.map((image) => {
+        {this.state.images.length ? this.state.images.map((image) => {
           return (
             <Link key={image.id} to={'image/' + image.id} id={'post' + image.id}>
               <ImageCard image={image.link} description={image.description || '*No description*'} comments={image.comments} isLiked={image.isLiked} id={image.id} />
             </Link>
           )
-        })}
+        }) : <h3 className='empty-data'>Nothing to show</h3>}
       </Col>
     )
   }
