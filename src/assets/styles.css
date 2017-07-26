@@ -11,10 +11,23 @@ a:hover {
   text-decoration: none;
 }
 
-.card{
+.card,
+.jumbotron {
   text-align: center;
 }
 
-.route-wrapper{
+.card .img-responsive,
+.jumbotron {
+  margin: auto;
+}
+
+.route-wrapper {
   position: absolute;
+}
+
+.inner-transition {
+  position: absolute;
+}
+.liked{
+  color: red;
 }

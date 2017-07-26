@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import { Navbar, Button } from 'react-bootstrap';
-import { Link } from 'react-router';
-import FontAwesome from 'react-fontawesome';
-import AddModal from './AddModal.jsx';
-import { RouteTransition } from 'react-router-transition';
-import './styles.css'
+import React, { Component } from 'react'
+import { Navbar, Button } from 'react-bootstrap'
+import { Link } from 'react-router'
+import FontAwesome from 'react-fontawesome'
+import AddModal from './AddModal.jsx'
+import { RouteTransition } from 'react-router-transition'
+import db from './db.js'
+import './assets/styles.css'
 
 class App extends Component {
   constructor() {
@@ -12,10 +13,10 @@ class App extends Component {
     this.state = { show: false };
   }
   componentWillMount() {
-    let db = openDatabase("images", "0.1", "A list of to do items.", 200000);
-    db.transaction((tx) => {
-      tx.executeSql("CREATE TABLE IF NOT EXISTS 'images' ('id' INTEGER PRIMARY KEY ASC, 'link' VARCHAR(200) NOT NULL, 'description' VARCHAR(200) NULL, 'date' DATETIME NOT NULL);")
-    })
+    db.executeTransaction(`CREATE TABLE IF NOT EXISTS 'images'
+      ('id' INTEGER PRIMARY KEY ASC, 'link' VARCHAR(200) NOT NULL, 'description' VARCHAR(200) NULL, 'date' DATETIME NOT NULL, 'isLiked' BOOLEAN DEFAULT FALSE);`);
+    db.executeTransaction(`CREATE TABLE IF NOT EXISTS 'comments'
+      ('id' INTEGER PRIMARY KEY ASC, 'image_id' INTEGER NOT NULL, 'text' VARCHAR(200) NOT NULL);`)
   }
   openModal = () => {
     this.setState({ show: true });
@@ -29,10 +30,7 @@ class App extends Component {
   }
   addToDb(item) {
     item.date = Date.now();
-    let db = openDatabase("images", "0.1", "A list of to do items.", 200000);
-    db.transaction((tx) => {
-      tx.executeSql(`INSERT INTO images(link, description, date) VALUES(?, ?, ?)`, [item.link, item.description, item.date]);
-    });
+    db.executeTransaction(`INSERT INTO images(link, description, date) VALUES(${item.link}, ${item.description}, ${item.date})`)
   }
   render() {
     return (
@@ -57,14 +55,14 @@ class App extends Component {
         </Navbar>
         <RouteTransition
           pathname={this.props.location.pathname}
-          atEnter={{ translateX: 100 }}
-          atLeave={{ translateX: -100 }}
-          atActive={{ translateX: 0 }}
-          mapStyles={styles => ({ transform: `translateX(${styles.translateX}%)` })}
+          atEnter={{ scale: 0, opacity: 0 }}
+          atLeave={{ scale: 0, opacity: 0 }}
+          atActive={{ scale: 1, opacity: 1 }}
+          mapStyles={styles => ({ transform: `scale(${styles.scale})`, opacity: styles.opacity })}
         >
           {React.Children.map(this.props.children, child => {
             return React.cloneElement(child, {
-              anything: this
+              anything: ''
             })
           })}
         </RouteTransition>
@@ -74,4 +72,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App
