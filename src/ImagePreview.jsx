@@ -12,7 +12,6 @@ class ImagePreview extends Component {
     this.executeTransaction(`SELECT * FROM images WHERE id=${this.props.params.id}`).then((res) => {
       this.setState({ image: res[0] });
     });
-    console.log(this)
   }
   executeTransaction(query) {
     let db = openDatabase("images", "0.1", "A list of to do items.", 2 * 1024 * 1024);
@@ -28,7 +27,7 @@ class ImagePreview extends Component {
     return (
       <div>
         <div className='card'>
-          <Image src={this.state.image.link}></Image>
+          <Image src={this.state.image.link} responsive />
           <p className="lead">{this.state.image.description}</p>
         </div>
         <Media>

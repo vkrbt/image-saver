@@ -5001,6 +5001,12 @@ react-font-awesome@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/react-font-awesome/-/react-font-awesome-1.0.3.tgz#c4c67cc0038c2288d35f02d0a952d41ece2a16e0"
 
+react-fontawesome@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/react-fontawesome/-/react-fontawesome-1.6.1.tgz#eddce17e7dc731aa09fd4a186688a61793a16c5c"
+  dependencies:
+    prop-types "^15.5.6"
+
 react-motion@^0.4.8:
   version "0.4.8"
   resolved "https://registry.yarnpkg.com/react-motion/-/react-motion-0.4.8.tgz#23bb2dd27c2d8e00d229e45572d105efcf40a35e"

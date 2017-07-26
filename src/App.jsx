@@ -14,7 +14,7 @@ class App extends Component {
   componentWillMount() {
     let db = openDatabase("images", "0.1", "A list of to do items.", 200000);
     db.transaction((tx) => {
-      tx.executeSql("CREATE TABLE IF NOT EXISTS 'images' ('link' VARCHAR(200) NOT NULL, 'description' VARCHAR(200) NULL, 'date' DATETIME NOT NULL);")
+      tx.executeSql("CREATE TABLE IF NOT EXISTS 'images' ('id' INTEGER PRIMARY KEY ASC, 'link' VARCHAR(200) NOT NULL, 'description' VARCHAR(200) NULL, 'date' DATETIME NOT NULL);")
     })
   }
   openModal = () => {
@@ -62,7 +62,11 @@ class App extends Component {
           atActive={{ translateX: 0 }}
           mapStyles={styles => ({ transform: `translateX(${styles.translateX}%)` })}
         >
-          {this.props.children}
+          {React.Children.map(this.props.children, child => {
+            return React.cloneElement(child, {
+              anything: this
+            })
+          })}
         </RouteTransition>
         <AddModal show={this.state.show} onClose={this.onClose} addImage={this.addImage} />
       </div>
