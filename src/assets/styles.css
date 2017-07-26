@@ -2,12 +2,18 @@ body {
   padding-top: 86px;
 }
 
+*:focus {
+  outline: 0;
+}
+
 .thumbnail p {
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-a:hover {
+a:hover,
+a:active,
+a:focus {
   text-decoration: none;
 }
 
@@ -21,13 +27,59 @@ a:hover {
   margin: auto;
 }
 
-.route-wrapper {
-  position: absolute;
+.card img {
+  width: auto;
+  min-width: 50%;
+  height: auto;
+}
+
+.thumbnail img {
+  min-width: 100%;
 }
 
 .inner-transition {
   position: absolute;
+  left: 0;
+  max-width: 100%;
 }
-.liked{
-  color: red;
+
+.liked {
+  color: #ff0000;
 }
+
+.info div {
+  padding: 0 10px;
+  display: inline-block;
+  line-height: 1.3em;
+  font-size: 1.3em;
+}
+
+.like {
+  padding: 0;
+  background: none;
+  border: none;
+  transition: 0.1s ease-out;
+}
+.like:hover{
+  background-color: rgba(200,200,200, 0.3);
+}
+.like:active {
+  transform: scale(1.1);
+}
+
+.rotating * {
+  transition: 0.3s ease-out;
+}
+
+.rotating:hover * {
+  transform: rotate(90deg);
+}
+
+.modal-dialog .close {
+  transform: rotate(-90deg) scale(0);
+}
+
+.modal-dialog:hover .close {
+  transform: rotate(0) scale(1);
+}
+

@@ -22,7 +22,7 @@ class AddModal extends Component {
     this.linkInputValidator(e);
     this.setState({ link: e.target.value });
   }
-  linkInputValidator = (e) =>{
+  linkInputValidator = (e) => {
     return this.state.isImageInvalid ? 'error' : 'success';
   }
   descriptionInputChangeHandler = (e) => {
@@ -55,13 +55,25 @@ class AddModal extends Component {
             <form onKeyPress={this.keyPressHandler}>
               <FormGroup controlId='image' validationState={this.linkInputValidator()}>
                 <ControlLabel>Image Link*</ControlLabel>
-                <FormControl maxLength={200} autoFocus componentClass='input' placeholder='Image Link' value={this.state.link} onChange={this.linkInputChangeHandler} required/>
+                <FormControl
+                  value={this.state.link}
+                  onChange={this.linkInputChangeHandler}
+                  componentClass='input'
+                  autoFocus
+                  placeholder='Image Link'
+                  maxLength={200}
+                  required />
               </FormGroup>
               <FormGroup controlId="description">
                 <ControlLabel>Description</ControlLabel>
-                <FormControl maxLength={200} componentClass="textarea" placeholder="Description" value={this.state.description} onChange={this.descriptionInputChangeHandler} />
+                <FormControl
+                  value={this.state.description}
+                  onChange={this.descriptionInputChangeHandler}
+                  maxLength={200}
+                  componentClass="textarea"
+                  placeholder="Description" />
               </FormGroup>
-              <Image src={this.state.link} onError={this.makeButtonDisabled} onLoad={this.makeButtonActive} responsive hidden={this.state.isImageInvalid}/>
+              <Image src={this.state.link} onError={this.makeButtonDisabled} onLoad={this.makeButtonActive} responsive hidden={this.state.isImageInvalid} />
             </form>
           </Modal.Body>
           <Modal.Footer>

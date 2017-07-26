@@ -18,9 +18,7 @@ class ImageCard extends Component {
     this.setState({ isLiked: converter.stringToBoolean(nextProps.isLiked) })
   }
   likeClick = (e) => {
-    e.preventDefault();
-    
-    console.log()
+    e.preventDefault()
     db.executeTransaction(`UPDATE images SET isLiked='${converter.booleanToString(!this.state.isLiked)}' WHERE id=${this.props.id}`).then(
       () => {
         this.setState({ isLiked: !this.state.isLiked });
@@ -31,12 +29,14 @@ class ImageCard extends Component {
     return (
       <Col>
         <Thumbnail onError={this.addDefaultSrc} src={this.props.image}>
-          <p>
-            <FontAwesome name='comment'></FontAwesome>{this.props.comments}
-            <button onClick={this.likeClick} className={this.state.isLiked ? 'liked' : ''}>
-              <FontAwesome name='heart'></FontAwesome>
-            </button>
-          </p>
+          <div className={'info'}>
+            <div onClick={this.likeClick} className={'like' + (this.state.isLiked ? ' liked' : '')}>
+              <FontAwesome name='heart'></FontAwesome>Like it
+            </div>
+            <div className='comments'>
+              <FontAwesome name='comment'></FontAwesome>{this.props.comments}
+            </div>
+          </div>
           <p>{this.props.description}</p>
         </Thumbnail>
       </Col>

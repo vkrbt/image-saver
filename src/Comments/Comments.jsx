@@ -13,7 +13,7 @@ class Comments extends Component {
   componentWillMount() {
     this.getComments();
   }
-  getComments =()=>{
+  getComments = () => {
     db.executeTransaction(`SELECT * FROM comments WHERE image_id=${this.props.imageId}`).then((res) => {
       this.setState({ comments: res });
     });
@@ -24,10 +24,9 @@ class Comments extends Component {
   render() {
     return (
       <div>
-        {this.state.comments.map((comment) => {
-          return <Comment key={comment.id} comment={comment.text} />
-        })}
+        <h2>Comments</h2>
         <CommentInput imageId={this.props.imageId} addComment={this.addComment} />
+        {this.state.comments.map((comment) => <Comment key={comment.id} comment={comment.text} />)}
       </div>
     )
   }

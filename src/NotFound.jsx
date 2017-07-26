@@ -5,7 +5,7 @@ import {Link} from 'react-router'
 class NotFound extends Component {
   render () {
     return (
-      <div className='inner-transition'>
+      <div>
         <Jumbotron>
           <h1>Oops!</h1>
           <h2>404 Not Found</h2>

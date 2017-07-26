@@ -22,7 +22,7 @@ class ImagePreview extends Component {
   }
   render() {
     return (
-      <div className='inner-transition'>
+      <div>
         <div className='card'>
           <Image src={this.state.image.link} responsive />
           <p className="lead">{this.state.image.description}</p>
