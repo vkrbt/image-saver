@@ -33,14 +33,14 @@ class CommentInput extends Component {
       <div>
         <FormGroup controlId="formControlsTextarea">
           <FormControl
-            onClick={this.keyPressHandler}
+            onKeyPress={this.keyPressHandler}
             componentClass="textarea"
             value={this.state.comment}
             onChange={this.commentInputChangeHandler}
             maxLength={200}
             placeholder="Enter your comment here" />
         </FormGroup>
-        <Button bsStyle='primary' onKeyPress={this.keyPressHandler} disabled={this.state.btnDisabled}>Add</Button>
+        <Button bsStyle='primary' onClick={this.addComment} disabled={this.state.btnDisabled}>Add</Button>
       </div>
     )
   }
