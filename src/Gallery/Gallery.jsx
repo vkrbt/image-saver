@@ -10,6 +10,7 @@ class Gallery extends Component {
     this.state = {
       images: []
     }
+    console.log(this)
   }
   componentWillMount() {
     this.getImages();
