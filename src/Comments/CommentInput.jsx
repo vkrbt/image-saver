@@ -24,7 +24,6 @@ class CommentInput extends Component {
     }
   }
   keyPressHandler = (e) => {
-    e.preventDefault();
     if (e.key === 'Enter') {
       this.addComment();
     }
