@@ -19,17 +19,18 @@ class Gallery extends Component {
       this.getImages();
       this.props.chageStatusOfData();
     }
-
   }
   getImages = () => {
-    db.executeTransaction(`SELECT * FROM images ORDER BY date DESC`).then((res) => {
-      res.forEach((item) => {
-        db.executeTransaction(`SELECT COUNT(*) FROM comments WHERE image_id=${item.id}`).then((comments) => {
-          item.comments = comments[0]['COUNT(*)'];
-          this.setState({ images: res });
+    db.executeTransaction(`SELECT * FROM images ORDER BY date DESC`)
+      .then((res) => {
+        res.forEach((item) => {
+          db.executeTransaction(`SELECT COUNT(*) FROM comments WHERE image_id=${item.id}`)
+            .then((comments) => {
+              item.comments = comments[0]['COUNT(*)'];
+              this.setState({ images: res });
+            })
         })
-      })
-    });
+      });
   }
   render() {
     return (

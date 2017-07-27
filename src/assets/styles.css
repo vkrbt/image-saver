@@ -86,3 +86,6 @@ a:focus {
 .empty-data{
   text-align: center;
 }
+.transition-wrapper{
+  position: relative;
+}

@@ -1,12 +1,12 @@
 export default {
-  stringToBoolean(str) {
+  stringToBoolean (str) {
     if (str.toString().toLowerCase() === 'true') {
-      return true;
+      return true
     }
-    return false;
+    return false
   },
 
-  booleanToString(condition) {
-    return (!!condition).toString().toUpperCase();
+  booleanToString (condition) {
+    return (!!condition).toString().toUpperCase()
   }
 }

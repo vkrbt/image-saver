@@ -5,7 +5,7 @@ import ImagePreview from './Gallery/ImagePreview.jsx'
 import Gallery from './Gallery/Gallery.jsx'
 import NotFound from './NotFound.jsx'
 class Routing extends Component {
-  render() {
+  render () {
     return (
       <Router history={browserHistory}>
         <Route component={App}>
