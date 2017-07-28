@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Button, Modal, FormGroup, FormControl, ControlLabel, Image } from 'react-bootstrap'
+import {addImage} from './actions/images'
 
 class AddModal extends Component {
   constructor() {
@@ -13,6 +15,7 @@ class AddModal extends Component {
     if (!this.state.isImageInvalid) {
       this.props.addImage({ link: this.state.link, description: this.state.description });
       this.setState({ link: '', description: '' })
+      this.props.onClose();
     } else {
       alert('Image isn\'t valid')
     }
@@ -85,4 +88,10 @@ class AddModal extends Component {
   }
 }
 
-export default AddModal
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addImage: (image) => addImage(image)(dispatch)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddModal)

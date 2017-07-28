@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Navbar, Button } from 'react-bootstrap'
 import { Link } from 'react-router'
+import { connect } from 'react-redux'
 import FontAwesome from 'react-fontawesome'
-import AddModal from './AddModal.jsx'
+import { openModal } from './actions/modal'
 import db from './db.js'
 import './assets/styles.css'
 
@@ -18,10 +19,11 @@ class App extends Component {
       ('id' INTEGER PRIMARY KEY ASC, 'image_id' INTEGER NOT NULL, 'text' VARCHAR(200) NOT NULL);`)
   }
   openModal = () => {
-    this.setState({ show: true });
+    //this.setState({ show: true });
+    this.props.openModal()
   }
   onClose = () => {
-    this.setState({ show: false });
+    this.props.closeModal()
   }
   addImage = (item) => {
     this.setState({ show: false, reloaded: true });
@@ -62,10 +64,15 @@ class App extends Component {
             chageStatusOfData: this.chageStatus
           })
         })}
-        <AddModal show={this.state.show} onClose={this.onClose} addImage={this.addImage} />
       </div>
     )
   }
 }
 
-export default App
+const mapDispathToProps = (dispath) => {
+  return {
+    openModal: () => openModal()(dispath)
+  }
+}
+
+export default connect(null, mapDispathToProps)(App)
