@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Col } from 'react-bootstrap'
 import { Link } from 'react-router'
-import AddModal from '../AddModal'
-import ImageCard from './ImageCard.jsx'
+import AddModal from './AddModal'
+import ImageCard from '../components/ImageCard.jsx'
 import { closeModal } from '../actions/modal'
-import db from '../db.js'
+import db from '../common/db.js'
 
 class Gallery extends Component {
   constructor() {
@@ -14,7 +14,7 @@ class Gallery extends Component {
       images: []
     }
   }
-  componentWillMount() {
+  /*componentWillMount() {
     this.getImages();
   }
   componentWillReceiveProps(nextProps) {
@@ -22,7 +22,7 @@ class Gallery extends Component {
       this.getImages();
       this.props.chageStatusOfData();
     }
-  }
+  }*/
   getImages = () => {
     db.executeTransaction(`SELECT * FROM images ORDER BY date DESC`)
       .then((res) => {

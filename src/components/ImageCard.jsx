@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Thumbnail, Col } from 'react-bootstrap'
-import db from '../db.js'
-import converter from '../converter.js'
+import db from '../common/db.js'
+import converter from '../common/converter.js'
 
 class ImageCard extends Component {
   constructor() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { FormGroup, FormControl, Button } from 'react-bootstrap'
-import db from '../db.js'
+import db from '../common/db.js'
 
 class CommentInput extends Component {
   constructor() {

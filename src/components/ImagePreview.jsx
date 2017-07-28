@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 import { Image } from 'react-bootstrap'
-import Comments from '../Comments/Comments.jsx'
-import db from '../db.js'
+import Comments from '../containers/Comments.jsx'
+import db from '../common/db.js'
 
 class ImagePreview extends Component {
   constructor () {

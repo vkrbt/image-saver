@@ -1,9 +1,9 @@
 import React from 'react'
 import { Router, Route, browserHistory } from 'react-router'
 import App from './App.jsx'
-import ImagePreview from './Gallery/ImagePreview.jsx'
-import Gallery from './Gallery/Gallery.jsx'
-import NotFound from './NotFound.jsx'
+import ImagePreview from './components/ImagePreview'
+import Gallery from './containers/Gallery'
+import NotFound from './components/NotFound'
 
 const Routing = (
   <Router history={browserHistory}>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button, Modal, FormGroup, FormControl, ControlLabel, Image } from 'react-bootstrap'
-import { addImage } from './actions/images'
+import { addImage } from '../actions/images'
 
 class AddModal extends Component {
   constructor() {

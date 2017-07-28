@@ -4,13 +4,14 @@ import {
 } from '../types/modal'
 
 const modalReducer = (opened = false, action) => {
-  if (action.type === OPEN_MODAL) {
-    return true
+  switch (action.type) {
+    case OPEN_MODAL:
+      return true;
+    case CLOSE_MODAL:
+      return false;
+    default:
+      return false;
   }
-  if (action.type === CLOSE_MODAL) {
-    return false
-  }
-  return opened
 }
 
 export default modalReducer

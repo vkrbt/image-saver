@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import FontAwesome from 'react-fontawesome'
 import { openModal } from './actions/modal'
-import db from './db.js'
+import db from './common/db.js'
 import './assets/styles.css'
 
 class App extends Component {

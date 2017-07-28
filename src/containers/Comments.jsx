@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Comment from './Comment.jsx'
+import Comment from '../components/Comment.jsx'
 import CommentInput from './CommentInput.jsx'
-import db from '../db.js'
+import db from '../common/db.js'
 
 class Comments extends Component {
   constructor() {
