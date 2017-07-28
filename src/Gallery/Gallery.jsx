@@ -56,7 +56,7 @@ class Gallery extends Component {
 const mapStateToProps = (store, ownProps) => {
   return {
     show: store.modalReducer,
-    images: store.imageReducer
+    images: store.imageReducer.sort((a, b) => b.date-a.date)
   }
 }
 

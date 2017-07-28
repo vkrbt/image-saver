@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button, Modal, FormGroup, FormControl, ControlLabel, Image } from 'react-bootstrap'
-import {addImage} from './actions/images'
+import { addImage } from './actions/images'
 
 class AddModal extends Component {
   constructor() {
@@ -13,7 +13,13 @@ class AddModal extends Component {
   }
   addImage = () => {
     if (!this.state.isImageInvalid) {
-      this.props.addImage({ link: this.state.link, description: this.state.description });
+      this.props.addImage(
+        {
+          link: this.state.link,
+          description: this.state.description,
+          date: Date.now(),
+        }
+      );
       this.setState({ link: '', description: '' })
       this.props.onClose();
     } else {
