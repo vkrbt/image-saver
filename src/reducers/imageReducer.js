@@ -4,7 +4,6 @@ import {
 
 const imageReducer = (state = [], action) => {
   if (action.type === ADD_IMAGE) {
-    console.log(action)
     return [
       ...state,
       action.data
