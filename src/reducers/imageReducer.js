@@ -3,13 +3,14 @@ import {
 } from '../types/images'
 
 const imageReducer = (state = [], action) => {
-  if (action.type === ADD_IMAGE) {
-    return [
-      ...state,
-      action.data
-    ]
+  switch (action.type){
+    case ADD_IMAGE:
+      return [
+        ...state,
+        action.data
+      ];
+    default: return state;
   }
-  return state
 }
 
 export default imageReducer
